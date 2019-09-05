@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ClienteCadComponent } from './components/cliente-cad.component';
 import { ClienteListComponent } from './components/cliente-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ClienteService } from './services/cliente.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ ClienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
