@@ -48,7 +48,7 @@
         
         <div class="form-group col-md-6">
             <label for="birthDate">Birth Date</label>
-            <input type="date" id="birthDate" class="form-control" placeholder="Birth Date" formControlName="birthDate" required />
+            <input type="text" id="birthDate" class="form-control" placeholder="Birth Date" formControlName="birthDate" required />
             <small *ngIf="submited && form.get('birthDate')?.errors?.required" 
                 class="form-text text-muted">*Required field
             </small>

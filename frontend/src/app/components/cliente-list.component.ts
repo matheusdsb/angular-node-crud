@@ -19,7 +19,7 @@ export class ClienteListComponent implements OnInit {
     this.clienteService.getAll()
     .subscribe(data => {
       this.clientList = new Observable((ob) => {
-          ob.next(data.docs ? data.docs : []);
+          ob.next(data ? data : []);
         });
       },
     );

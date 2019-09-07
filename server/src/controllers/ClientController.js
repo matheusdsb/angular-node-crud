@@ -5,7 +5,8 @@ const Client = mongoose.model('Client');
 module.exports = {
 	async index(req, res) {
 		const { page = 1, limit = 10 } = req.query;
-		const clients = await Client.paginate({}, { page, limit });
+		//const clients = await Client.paginate({}, { page, limit });
+		const clients = await Client.find();
 		return res.json(clients);
 	},
 
