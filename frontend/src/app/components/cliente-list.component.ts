@@ -9,7 +9,7 @@ import { Cliente } from '../interfaces/cliente.interface';
 })
 export class ClienteListComponent implements OnInit {
 
-  clientList: any = new Observable<Cliente[]>();
+  clientList: any = new Observable();
 
   constructor(private clienteService: ClienteService) { }
 
