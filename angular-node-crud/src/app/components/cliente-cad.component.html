@@ -1,41 +1,41 @@
 <br/><br/>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">  
+
+    <label>
+        Code:
+        <input type="text" formControlName="code" required />
+        <span class="alert-danger" *ngIf="submited && form.get('code')?.errors?.required">
+            *Required field
+        </span>           
+    </label>
+
+    <br/><br/>    
     
     <label>
-        Nome:
-        <input type="text" formControlName="nome"  required />
-        <span class="alert-danger" *ngIf="submited && form.get('nome')?.errors?.required">
-             *Campo obrigatório.
+        Name:
+        <input type="text" formControlName="name"  required />
+        <span class="alert-danger" *ngIf="submited && form.get('name')?.errors?.required">
+             *Required field
         </span>        
     </label>
 
     <br/><br/>
 
     <label>
-        Código:
-        <input type="text" formControlName="codigo" required />
-        <span class="alert-danger" *ngIf="submited && form.get('codigo')?.errors?.required">
-             *Campo obrigatório.
+        Address:
+        <input type="text" formControlName="address"  required />
+        <span class="alert-danger" *ngIf="submited && form.get('address')?.errors?.required">
+            *Required field
         </span>           
     </label>
 
     <br/><br/>
 
     <label>
-        Endereço:
-        <input type="text" formControlName="endereco"  required />
-        <span class="alert-danger" *ngIf="submited && form.get('endereco')?.errors?.required">
-             *Campo obrigatório.
-        </span>           
-    </label>
-
-    <br/><br/>
-
-    <label>
-        Telefone:
-        <input type="text" formControlName="telefone"  required />
-        <span class="alert-danger" *ngIf="submited && form.get('telefone')?.errors?.required">
-            *Campo obrigatório.
+        Telephone:
+        <input type="text" formControlName="telephone"  required />
+        <span class="alert-danger" *ngIf="submited && form.get('telephone')?.errors?.required">
+            *Required field
         </span>            
     </label>    
 
@@ -45,31 +45,31 @@
         Status:
         <select name="status" formControlName="status" required>
             <option value="" selected>(selecione)</option>
-            <option value="ativo">ativo</option>
-            <option value="excluido">excluido</option>
-            <option value="inativo">inativo</option>
+            <option value="active">active</option>
+            <option value="deleted">deleted</option>
+            <option value="inactive">inactive</option>
         </select> 
         <span class="alert-danger" *ngIf="submited && form.get('status')?.errors?.required">
-            *Campo obrigatório.
+            *Required field
         </span>          
     </label>     
     
     <br/><br/>
     
     <label>
-        Data de Nascimento:
-        <input type="text" formControlName="dataNascimento"  required />
-        <span class="alert-danger" *ngIf="submited && form.get('dataNascimento')?.errors?.required">
-            *Campo obrigatório.
+        Birth Date:
+        <input type="text" formControlName="birthDate"  required />
+        <span class="alert-danger" *ngIf="submited && form.get('birthDate')?.errors?.required">
+            *Required field
         </span>            
     </label>       
 
     <br/><br/>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Save</button>
 
     <div *ngIf="message">
         <br/><br/>
-        <div>{{ message }}</div>
+        <div [class.alert-danger]="error">{{ message }}</div>
     </div>
 </form>

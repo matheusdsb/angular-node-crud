@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/api/cliente/save', function (req, res) {
+app.post('/api/client', function (req, res) {
   res.json(req.body);
 });
 

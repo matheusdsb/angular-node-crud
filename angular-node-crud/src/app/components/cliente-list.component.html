@@ -1,1 +1,3 @@
-list
+<div *ngFor="let c of clientList;">
+    <a href="api/client/{{c.id}}">{{ c.name }}</a>
+</div>

@@ -11,14 +11,15 @@ export class ClienteCadComponent {
 
   submited = false;
   message = null;
+  error = false;
   
   form = this.fb.group({
-    nome: ['', [Validators.required]],
-    codigo:  ['', [Validators.required]],
-    endereco:  ['', [Validators.required]],
-    telefone:  ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    code:  ['', [Validators.required]],
+    address:  ['', [Validators.required]],
+    telephone:  ['', [Validators.required]],
     status:  ['', [Validators.required]],
-    dataNascimento:  ['', [Validators.required]],
+    birthDate:  ['', [Validators.required]],
   });
 
   constructor(private fb: FormBuilder, private clienteService: ClienteService) { }
@@ -40,9 +41,13 @@ export class ClienteCadComponent {
           console.log(data);
           this.form.reset();
           this.submited = false;
-          this.message = 'Cliente salvo com sucesso.';
+          //this.error = false;
+          this.message = 'Client successfully saved.';
         },
-        error => console.log('error', error)
+        error =>  {
+          //this.error = true;
+          this.message = error;
+        }
       );
   }
 }

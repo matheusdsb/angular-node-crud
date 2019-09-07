@@ -8,10 +8,23 @@ import { catchError } from 'rxjs/operators';
 export class ClienteService {
   constructor(private http: HttpClient) { }
 
-  apiUrl = '/api/cliente';
+  apiUrl = '/api/client';
 
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
+
+    if (error.error.errors) {
+      const mongoErrors = error.error.errors;
+      let message = '';
+
+      for (const key in mongoErrors) {
+        if (mongoErrors.hasOwnProperty(key)) {
+          message = `MongoDB error at field ${key}: ${mongoErrors[key].message}`;
+          break;
+        }
+      }
+
+      return throwError(message);
+    } else if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
@@ -27,10 +40,10 @@ export class ClienteService {
   }
 
   save(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.apiUrl + '/save', cliente)
-    .pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post<Cliente>(this.apiUrl, cliente)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   getAll() {
