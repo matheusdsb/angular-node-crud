@@ -24,6 +24,8 @@ export class ClienteService {
       }
 
       return throwError(message);
+    } else if (error.error.message) {
+      return throwError(error.error.message);
     } else if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -46,15 +48,22 @@ export class ClienteService {
       );
   }
 
+  update(id: string, cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(this.apiUrl + '/' + id, cliente)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }  
+
   getAll() {
     return this.http.get<any>(this.apiUrl);
   }
 
-  getById(id: number) {
+  getById(id: string) {
     return this.http.get<Cliente>(this.apiUrl + '/' + id);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     return this.http.delete(this.apiUrl + '/' + id);
   }
 }

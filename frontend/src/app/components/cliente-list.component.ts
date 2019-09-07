@@ -9,17 +9,34 @@ import { Cliente } from '../interfaces/cliente.interface';
 })
 export class ClienteListComponent implements OnInit {
 
-  clientList: any = new Observable();
+  clientList: Observable<any[]> = new Observable((ob) => {
+    ob.next([]);
+  });
 
   constructor(private clienteService: ClienteService) { }
 
-  ngOnInit() {
+  loadList() {
     this.clienteService.getAll()
-    .subscribe(
-      data => {
-        this.clientList = data.docs;
+    .subscribe(data => {
+      this.clientList = new Observable((ob) => {
+          ob.next(data.docs ? data.docs : []);
+        });
       },
     );
   }
-  
+
+  ngOnInit() {
+    this.loadList();
+  }
+
+  onRemove(id){
+    this.clienteService.delete(id).subscribe(
+      data => {
+        this.loadList();
+      },
+      error =>  {
+        console.error(error);
+      }
+    );
+  }
 }

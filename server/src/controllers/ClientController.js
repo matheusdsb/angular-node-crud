@@ -24,8 +24,12 @@ module.exports = {
 	},
 
 	async update(req, res) {
-		const client = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
-		return res.json(client);
+		try {
+			const client = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
+			return res.json(client);
+		} catch (err) {
+			return res.status(414).send(err);
+		}
 	},
 
 	async destroy(req, res) {
