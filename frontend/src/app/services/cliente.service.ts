@@ -47,7 +47,7 @@ export class ClienteService {
   }
 
   getAll() {
-    return this.http.get<Cliente[]>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl);
   }
 
   getById(id: number) {
