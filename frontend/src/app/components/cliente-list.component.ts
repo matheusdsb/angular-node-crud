@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { Observable } from 'rxjs';
 import { Cliente } from '../interfaces/cliente.interface';
+import { ExportService } from '../services/export.service';
 
 @Component({
   selector: 'cliente-list',
@@ -9,11 +10,11 @@ import { Cliente } from '../interfaces/cliente.interface';
 })
 export class ClienteListComponent implements OnInit {
 
-  clientList: Observable<any[]> = new Observable((ob) => {
+  clientList: Observable<Cliente[]> = new Observable((ob) => {
     ob.next([]);
   });
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(private clienteService: ClienteService, private exportService: ExportService) { }
 
   loadList() {
     this.clienteService.getAll()
@@ -38,5 +39,16 @@ export class ClienteListComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  export() {
+
+    const jsonArray: Cliente[] = [];
+
+    this.clientList.forEach(element => {
+      element.forEach(c => jsonArray.push(c));
+    });
+
+    this.exportService.exportExcel(jsonArray, 'clients');
   }
 }

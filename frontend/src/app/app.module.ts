@@ -8,6 +8,7 @@ import { ClienteCadComponent } from './components/cliente-cad.component';
 import { ClienteListComponent } from './components/cliente-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteService } from './services/cliente.service';
+import { ExportService } from './services/export.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ClienteService } from './services/cliente.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ ClienteService],
+  providers: [ ClienteService, ExportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
