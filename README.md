@@ -4,11 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Backend Node server
 
-Run `npm run dev` for start node backend server at 3001 port.
+Run `npm run dev` at server folder for start node backend server at 3001 port.
 
 ## Frontend Angular server
 
-Run `npm run dev` for start Angular server with proxy pointing to backend server
+Run `npm run start` at frontend folder for start Angular server with proxy pointing to backend server
 
 ## MongoDB instance
 
