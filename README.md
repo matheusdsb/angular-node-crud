@@ -12,4 +12,4 @@ Run `npm run start` at frontend folder for start Angular server with proxy point
 
 ## MongoDB instance
 
-You must have have MongoDB running at 27017 port. If you want to use docker for it, just run `docker-compose up -d` at docker folder, so that it will create a mongo instance at the provided port. 
+You must have have MongoDB running at 27017 port. If you want to use docker for it, just run `docker-compose up -d` at docker folder, so that will create a mongo instance at the provided port. 
