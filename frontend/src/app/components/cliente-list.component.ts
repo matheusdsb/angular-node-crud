@@ -10,6 +10,9 @@ import { ExportService } from '../services/export.service';
 })
 export class ClienteListComponent implements OnInit {
 
+  fieldOrderBy: keyof Cliente = 'code';
+  multiplierOrderBy: 1 | -1 = 1;
+
   clientList: Observable<Cliente[]> = new Observable((ob) => {
     ob.next([]);
   });
@@ -20,7 +23,10 @@ export class ClienteListComponent implements OnInit {
     this.clienteService.getAll()
     .subscribe(data => {
       this.clientList = new Observable((ob) => {
-          ob.next(data ? data : []);
+          ob.next(data ? data.sort((a, b) => 
+            a[this.fieldOrderBy] > b[this.fieldOrderBy] ? 1 * this.multiplierOrderBy : -1 * this.multiplierOrderBy)
+            : []
+          );
         });
       },
     );
@@ -50,5 +56,18 @@ export class ClienteListComponent implements OnInit {
     });
 
     this.exportService.exportExcel(jsonArray, 'clients');
+  }
+
+  orderBy(field: keyof Cliente) {
+
+    if(field !== this.fieldOrderBy) {
+      this.fieldOrderBy = field;
+      this.multiplierOrderBy = 1;
+    } else {
+      this.multiplierOrderBy *= -1;
+    }
+
+    this.fieldOrderBy = field;
+    this.loadList();
   }
 }

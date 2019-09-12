@@ -3,12 +3,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Code</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Telephone</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Birth Date</th>
+                    <th scope="col" class="clickable" (click)="orderBy('code')">Code</th>
+                    <th scope="col" class="clickable" (click)="orderBy('name')">Name</th>
+                    <th scope="col" class="clickable" (click)="orderBy('address')">Address</th>
+                    <th scope="col" class="clickable" (click)="orderBy('telephone')">Telephone</th>
+                    <th scope="col" class="clickable" (click)="orderBy('status')">Status</th>
+                    <th scope="col" class="clickable" (click)="orderBy('birthDate')">Birth Date</th>
                     <th scope="col">Actions</th>
                 </tr>        
             </thead>
